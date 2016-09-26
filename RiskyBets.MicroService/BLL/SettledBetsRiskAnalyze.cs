@@ -10,7 +10,26 @@ namespace RiskyBets.MicroService.BLL
     {
         public bool IsRiskyCustomer(IList<SettledBet> customerBets, int riskPercentage)
         {
-            throw new NotImplementedException();
+            if (customerBets == null)
+            {
+                throw new ArgumentNullException("customerBets");
+            }
+            if (riskPercentage < 0)
+            {
+                throw new ArgumentOutOfRangeException("riskPercentage", "riskPercentage must be greater than 0");
+            }
+
+            var customerBetsCount = customerBets.Count();
+
+            if (customerBetsCount == 0)
+            {
+                return false;
+            }
+            var customerWinningBets = customerBets.Count(q => q.WinAmount > 0);
+
+            var winningBetPercentage = (customerWinningBets * 100) / customerBetsCount;
+
+            return winningBetPercentage > riskPercentage;
         }
     }
 }
