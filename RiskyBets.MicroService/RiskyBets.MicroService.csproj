@@ -77,6 +77,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="DAL\Entities\BaseBet.cs" />
+    <Compile Include="DAL\Entities\BaseEntity.cs" />
+    <Compile Include="DAL\Entities\Customer.cs" />
+    <Compile Include="DAL\Entities\UnSettledBet.cs" />
+    <Compile Include="DAL\Entities\SettledBet.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
