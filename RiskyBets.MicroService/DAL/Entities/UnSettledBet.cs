@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RiskyBets.MicroService.DAL.Entities
 {
-    public class UnSettledBet
+    public class UnSettledBet: BaseBet
     {
         public int ToWinAmount { get; set; }
     }

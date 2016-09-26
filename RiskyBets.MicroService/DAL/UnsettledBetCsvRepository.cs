@@ -10,7 +10,12 @@ namespace RiskyBets.MicroService.DAL
     {
         public IList<UnSettledBet> GetAll()
         {
-            throw new NotImplementedException();
+            var bets = new List<UnSettledBet>()
+            {
+                new UnSettledBet(){Id = 1, CustomerId = 1, EventId = 11, ParticipantId = 4, Stake = 50, ToWinAmount = 500},
+                new UnSettledBet(){Id = 2, CustomerId = 3, EventId = 11, ParticipantId = 6, Stake = 50, ToWinAmount = 400},
+            };
+            return bets;
         }
 
         public UnSettledBet GetById(int id)

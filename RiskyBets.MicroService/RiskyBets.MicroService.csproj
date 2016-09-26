@@ -77,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BLL\IRiskAnalyze.cs" />
+    <Compile Include="BLL\SettledBetsRiskAnalyze.cs" />
     <Compile Include="DAL\Entities\BaseBet.cs" />
     <Compile Include="DAL\Entities\BaseEntity.cs" />
     <Compile Include="DAL\Entities\Customer.cs" />
