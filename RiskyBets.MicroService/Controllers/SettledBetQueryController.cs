@@ -10,6 +10,7 @@ using RiskyBets.MicroService.BLL;
 using RiskyBets.MicroService.DAL;
 using RiskyBets.MicroService.DAL.Entities;
 using WebApi.Infrastructure.ActionFilters;
+using RiskyBets.MicroService.Models;
 
 namespace RiskyBets.MicroService.Controllers
 {
@@ -38,9 +39,14 @@ namespace RiskyBets.MicroService.Controllers
         public IHttpActionResult Get(int customerId)
         {
             var sattledBets = _repository.GetAll();
-            var customerBet = sattledBets.Where(q => q.CustomerId == customerId);
-
-            return Ok();
+            var customerBets = sattledBets.Where(q => q.CustomerId == customerId);
+            var isRisky = _riskAnalyze.IsRiskyCustomer(customerBets.ToList());
+            var response = new CustomerSattledBetsModel() {
+                Bets = customerBets.ToList(),
+                RiskType = isRisky? "Risky": "Safe"
+            };
+            
+            return Ok(response);
         }
 
     }
