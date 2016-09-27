@@ -32,8 +32,10 @@ namespace RiskyBets.MicroService.App_Start
         {
             container.Register<IRepository<SettledBet>, SettledBetCsvRepository>(Lifestyle.Scoped);
             container.Register<IRepository<UnSettledBet>, UnsettledBetCsvRepository>(Lifestyle.Scoped);
-            container.Register<IRiskAnalyze<SettledBet>, SettledBetsRiskAnalyze>(Lifestyle.Scoped);
-            container.Register<IRiskFactors, RiskFactors>(Lifestyle.Scoped);
+            container.Register<ISettledBetRiskAnalyze<SettledBet>, SettledBetsRiskAnalyze>(Lifestyle.Scoped);
+            container.Register<IUnsettledBetRiskAnalyze<UnSettledBet>, UnsettledBetsRiskAnalyze>(Lifestyle.Scoped);
+            container.Register<ISettledBetRiskFactor, SettledBetRiskFactors>(Lifestyle.Scoped);
+            container.Register<IUnsettledBetRiskFactor, UnsettledBetRiskFactors>(Lifestyle.Scoped);
         }
     }
 }

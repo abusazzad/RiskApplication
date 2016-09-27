@@ -20,9 +20,9 @@ namespace RiskyBets.MicroService.Controllers
     public class SettledBetQueryController : ApiController
     {
         private readonly IRepository<SettledBet> _repository;
-        private readonly IRiskAnalyze<SettledBet> _riskAnalyze;
+        private readonly ISettledBetRiskAnalyze<SettledBet> _riskAnalyze;
 
-        public SettledBetQueryController(IRepository<SettledBet> repository, IRiskAnalyze<SettledBet> riskAnalyze)
+        public SettledBetQueryController(IRepository<SettledBet> repository, ISettledBetRiskAnalyze<SettledBet> riskAnalyze)
         {
             _repository = repository;
             _riskAnalyze = riskAnalyze;

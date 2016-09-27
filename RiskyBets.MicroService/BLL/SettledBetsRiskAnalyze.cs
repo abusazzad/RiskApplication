@@ -7,33 +7,12 @@ using RiskyBets.MicroService.DAL.Entities;
 
 namespace RiskyBets.MicroService.BLL
 {
-    public class SettledBetsRiskAnalyze: IRiskAnalyze<SettledBet>
+    public class SettledBetsRiskAnalyze: ISettledBetRiskAnalyze<SettledBet>
     {
-        private readonly IRiskFactors _riskFactors;
-        public SettledBetsRiskAnalyze(IRiskFactors riskFactors)
+        private readonly ISettledBetRiskFactor _riskFactors;
+        public SettledBetsRiskAnalyze(ISettledBetRiskFactor riskFactors)
         {
             _riskFactors = riskFactors;
-        }
-        public bool IsHighlyUnusualBetCustomer(IList<SettledBet> customerBets, int stake)
-        {
-            if (customerBets == null)
-            {
-                throw new ArgumentNullException("customerBets");
-            }
-            if (stake < 0)
-            {
-                throw new ArgumentOutOfRangeException("stake", "riskPercentage must be greater than 0");
-            }
-
-            var customerBetsCount = customerBets.Count();
-
-            if (customerBetsCount == 0)
-            {
-                return false;
-            }
-
-            var avgAmt = customerBets.Average(q => q.Stake);
-            return stake > (avgAmt * _riskFactors.HighlyUnusualBetTimes);
         }
 
         public bool IsRiskyCustomer(IList<SettledBet> customerBets)
@@ -60,26 +39,5 @@ namespace RiskyBets.MicroService.BLL
             return winningBetPercentage > _riskFactors.RiskPercentage;
         }
 
-        public bool IsUnusualBetCustomer(IList<SettledBet> customerBets, int stake)
-        {
-            if (customerBets == null)
-            {
-                throw new ArgumentNullException("customerBets");
-            }
-            if (stake < 0)
-            {
-                throw new ArgumentOutOfRangeException("stake", "riskPercentage must be greater than 0");
-            }
-
-            var customerBetsCount = customerBets.Count();
-
-            if (customerBetsCount == 0)
-            {
-                return false;
-            }
-
-            var avgAmt = customerBets.Average(q => q.Stake);
-            return stake > (avgAmt * _riskFactors.UnusualBetTimes);
-        }
     }
 }

@@ -113,10 +113,15 @@
   <ItemGroup>
     <Compile Include="App_Start\SimpleInjectorWebApiInitializer.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="BLL\IRiskAnalyze.cs" />
-    <Compile Include="BLL\IRiskFactors.cs" />
-    <Compile Include="BLL\RiskFactors.cs" />
+    <Compile Include="BLL\IUnsettledBetRiskFactor.cs" />
+    <Compile Include="BLL\IUnsettledBetRiskAnalyze.cs" />
+    <Compile Include="BLL\ISettledBetRiskAnalyze.cs" />
+    <Compile Include="BLL\ISettledBetRiskFactor.cs" />
+    <Compile Include="BLL\UnsettledBetRiskFactors.cs" />
+    <Compile Include="BLL\SettledBetRiskFactors.cs" />
+    <Compile Include="BLL\UnsettledBetsRiskAnalyze.cs" />
     <Compile Include="BLL\SettledBetsRiskAnalyze.cs" />
+    <Compile Include="Controllers\UnsettledBetQueryController.cs" />
     <Compile Include="Controllers\SettledBetQueryController.cs" />
     <Compile Include="DAL\Entities\BaseBet.cs" />
     <Compile Include="DAL\Entities\BaseEntity.cs" />

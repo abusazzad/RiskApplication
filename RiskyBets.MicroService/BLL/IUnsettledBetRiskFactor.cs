@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RiskyBets.MicroService.BLL
 {
-    public interface IRiskFactors
+    public interface IUnsettledBetRiskFactor
     {
-        int RiskPercentage { get; }
         int UnusualBetTimes { get; }
         int HighlyUnusualBetTimes { get;}
     }

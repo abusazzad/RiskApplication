@@ -32,7 +32,7 @@ namespace RiskyBets.MicroService.Tests.Controller
                 //Arrange
                 var bets = _fixture.Create<List<SettledBet>>();
                 var mockRepository = _fixture.Freeze<Mock<IRepository<SettledBet>>>();
-                var mockRiskAnalyze = _fixture.Freeze<Mock<IRiskAnalyze<SettledBet>>>();
+                var mockRiskAnalyze = _fixture.Freeze<Mock<ISettledBetRiskAnalyze<SettledBet>>>();
                 mockRepository.Setup(m=>m.GetAll()).Returns(bets);
                 var controller = new SettledBetQueryController(mockRepository.Object, mockRiskAnalyze.Object);
 
