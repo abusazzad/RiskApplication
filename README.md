@@ -1,11 +1,11 @@
 # RiskApplication
 Bet risk analysis application
 
-The solution needs to be opened in either VS2015 or VS2013. 
-The supported .NET version is 4.6.1
-Nuget packages need to be restored before compiling. 
+The solution needs to be opened in either VS2015 or VS2013. <br/>
+The supported .NET version is 4.6.1 <br/>
+Nuget packages need to be restored before compiling. <br/><br/>
 
-Run the solution.
+Run the solution.<br/><br/>
 
 Send the following HTTP GET requests:
 <ol>
