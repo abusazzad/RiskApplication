@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,60 +14,82 @@ using Ploeh.AutoFixture.AutoMoq;
 using Xunit;
 namespace RiskyBets.MicroService.Tests.BLL
 {
-    [TestClass]
     public class IsRiskyCustomerUnitTest
     {
-        [TestMethod]
+
+        private readonly IFixture _fixture;
+
+        public IsRiskyCustomerUnitTest()
+        {
+            _fixture = new Fixture().Customize(new AutoMoqCustomization());
+        }
+
+        [Fact]
+        [Trait("BLL", "IsRiskyCustomer")]
         public void Should_Pass_When_Passing_Valid_Param()
         {
-            var riskyCustomer = new SettledBetsRiskAnalyze();
-            var response = riskyCustomer.IsRiskyCustomer(new List<SettledBet>() { new SettledBet() { CustomerId =1, WinAmount = 10 } }, 60);
+            //Arrange
+            var mockRiskFactor = new Mock<IRiskFactors>();
+            mockRiskFactor.Setup(m => m.RiskPercentage).Returns(0);
+            var riskyCustomer = new SettledBetsRiskAnalyze(mockRiskFactor.Object);
 
+            var bets = _fixture.Create<List<SettledBet>>();
+
+            //Act
+            var response = riskyCustomer.IsRiskyCustomer(bets);
+
+            //Assert
             response.Should().BeTrue();
         }
 
-        [TestMethod]
+        [Fact]
+        [Trait("BLL", "IsRiskyCustomer")]
         public void Should_throw_ArgumentNullException_When_Try_With_Null_Bets()
         {
-            var riskyCustomer = new SettledBetsRiskAnalyze();
+            //Arrange
+            var mockRiskFactor = new Mock<IRiskFactors>();
+            mockRiskFactor.Setup(m => m.HighlyUnusualBetTimes).Returns(30);
+            mockRiskFactor.Setup(m => m.UnusualBetTimes).Returns(10);
+            mockRiskFactor.Setup(m => m.RiskPercentage).Returns(60);
+            var riskyCustomer = new SettledBetsRiskAnalyze(mockRiskFactor.Object);
             try
             {
-                var response = riskyCustomer.IsRiskyCustomer(null, 60);
-
+                //Act
+                var response = riskyCustomer.IsRiskyCustomer(null);
             }
             catch (Exception ex)
             {
-                Xunit.Assert.IsType< ArgumentNullException>(ex);
+                //Assert
+                Xunit.Assert.IsType<ArgumentNullException>(ex);
             }
 
 
         }
 
-        [TestMethod]
+        [Fact]
+        [Trait("BLL", "IsRiskyCustomer")]
         public void Should_throw_ArgumentOutOfRangeException_When_Try_With_Invalid_RiskPercentage()
         {
-            var riskyCustomer = new SettledBetsRiskAnalyze();
+            //Arrange
+            var mockRiskFactor = new Mock<IRiskFactors>();
+            mockRiskFactor.Setup(m => m.RiskPercentage).Returns(-60);
+            var riskyCustomer = new SettledBetsRiskAnalyze(mockRiskFactor.Object);
+
+            var bets = _fixture.Create<List<SettledBet>>();
+
             try
-            {
-                var response = riskyCustomer.IsRiskyCustomer(new List<SettledBet>(), -0);
+            {   //Act
+                var response = riskyCustomer.IsRiskyCustomer(bets);
 
             }
             catch (Exception ex)
             {
-                Xunit.Assert.IsType< ArgumentOutOfRangeException>(ex);
+                Xunit.Assert.IsType<InvalidDataException>(ex);
             }
 
 
         }
 
-        [TestMethod]
-        public void Should_Pass_When_Try_With_NoBet_And_Valid_RiskPercentage()
-        {
-            var riskyCustomer = new SettledBetsRiskAnalyze();
-            var response = riskyCustomer.IsRiskyCustomer(new List<SettledBet>(), 1);
-
-            response.Should().BeFalse();
-        }
     }
 
     [TestClass]
@@ -82,8 +105,11 @@ namespace RiskyBets.MicroService.Tests.BLL
         public void Should_Pass_When_Passing_Valid_Params()
         {
             //Arrange
+            var mockRiskFactor = new Mock<IRiskFactors>();
+            mockRiskFactor.Setup(m => m.HighlyUnusualBetTimes).Returns(30);
+
             var bets = _fixture.Create<List<SettledBet>>();
-            var riskyCustomer = new SettledBetsRiskAnalyze();
+            var riskyCustomer = new SettledBetsRiskAnalyze(mockRiskFactor.Object);
 
             //Act
             var response = riskyCustomer.IsHighlyUnusualBetCustomer(bets, (int)bets.Average(q=>q.Stake)*35);

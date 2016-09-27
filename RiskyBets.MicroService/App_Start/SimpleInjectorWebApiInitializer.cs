@@ -1,3 +1,4 @@
+using RiskyBets.MicroService.BLL;
 using RiskyBets.MicroService.DAL;
 using RiskyBets.MicroService.DAL.Entities;
 
@@ -31,6 +32,8 @@ namespace RiskyBets.MicroService.App_Start
         {
             container.Register<IRepository<SettledBet>, SettledBetCsvRepository>(Lifestyle.Scoped);
             container.Register<IRepository<UnSettledBet>, UnsettledBetCsvRepository>(Lifestyle.Scoped);
+            container.Register<IRiskAnalyze<SettledBet>, SettledBetsRiskAnalyze>(Lifestyle.Scoped);
+            container.Register<IRiskFactors, RiskFactors>(Lifestyle.Scoped);
         }
     }
 }

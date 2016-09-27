@@ -114,6 +114,8 @@
     <Compile Include="App_Start\SimpleInjectorWebApiInitializer.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BLL\IRiskAnalyze.cs" />
+    <Compile Include="BLL\IRiskFactors.cs" />
+    <Compile Include="BLL\RiskFactors.cs" />
     <Compile Include="BLL\SettledBetsRiskAnalyze.cs" />
     <Compile Include="Controllers\SettledBetQueryController.cs" />
     <Compile Include="DAL\Entities\BaseBet.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerSattledBetsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +143,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\WebApi.Infrastructure\WebApi.Infrastructure.csproj">
       <Project>{44dd2511-0fc6-42a1-9667-cbbf67b86bb9}</Project>

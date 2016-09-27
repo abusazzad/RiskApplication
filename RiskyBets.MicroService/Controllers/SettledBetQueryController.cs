@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using RiskyBets.MicroService.BLL;
 using RiskyBets.MicroService.DAL;
 using RiskyBets.MicroService.DAL.Entities;
 using WebApi.Infrastructure.ActionFilters;
@@ -18,10 +19,12 @@ namespace RiskyBets.MicroService.Controllers
     public class SettledBetQueryController : ApiController
     {
         private readonly IRepository<SettledBet> _repository;
+        private readonly IRiskAnalyze<SettledBet> _riskAnalyze;
 
-        public SettledBetQueryController(IRepository<SettledBet> repository)
+        public SettledBetQueryController(IRepository<SettledBet> repository, IRiskAnalyze<SettledBet> riskAnalyze)
         {
             _repository = repository;
+            _riskAnalyze = riskAnalyze;
         }
 
         //GET api/SettledBetQuery
@@ -34,8 +37,10 @@ namespace RiskyBets.MicroService.Controllers
         //GET api/SettledBetQuery?CustomerId=1
         public IHttpActionResult Get(int customerId)
         {
-            var sattledBets = _repository.GetAll();            
-            return Ok(sattledBets.Where(q=>q.CustomerId == customerId));
+            var sattledBets = _repository.GetAll();
+            var customerBet = sattledBets.Where(q => q.CustomerId == customerId);
+
+            return Ok();
         }
 
     }
