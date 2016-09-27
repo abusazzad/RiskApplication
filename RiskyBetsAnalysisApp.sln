@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskyBets.MicroService", "RiskyBets.MicroService\RiskyBets.MicroService.csproj", "{42543908-6E12-4286-9141-F52EE4875FCA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskyBets.MicroService.Tests", "RiskyBets.MicroService.Tests\RiskyBets.MicroService.Tests.csproj", "{2EF9E73F-40FD-4791-9673-A7719C83ABB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Infrastructure", "WebApi.Infrastructure\WebApi.Infrastructure.csproj", "{44DD2511-0FC6-42A1-9667-CBBF67B86BB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2EF9E73F-40FD-4791-9673-A7719C83ABB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EF9E73F-40FD-4791-9673-A7719C83ABB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EF9E73F-40FD-4791-9673-A7719C83ABB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44DD2511-0FC6-42A1-9667-CBBF67B86BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44DD2511-0FC6-42A1-9667-CBBF67B86BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44DD2511-0FC6-42A1-9667-CBBF67B86BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44DD2511-0FC6-42A1-9667-CBBF67B86BB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
