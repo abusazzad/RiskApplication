@@ -30,5 +30,13 @@ namespace RiskyBets.MicroService.Controllers
             var sattledBets =  _repository.GetAll();
             return Ok(sattledBets);
         }
+
+        //GET api/SettledBetQuery?CustomerId=1
+        public IHttpActionResult Get(int customerId)
+        {
+            var sattledBets = _repository.GetAll();            
+            return Ok(sattledBets.Where(q=>q.CustomerId == customerId));
+        }
+
     }
 }

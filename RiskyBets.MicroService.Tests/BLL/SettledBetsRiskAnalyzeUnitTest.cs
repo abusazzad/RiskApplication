@@ -81,12 +81,10 @@ namespace RiskyBets.MicroService.Tests.BLL
         [Trait("BLL", "IsHighlyUnusualBetCustomer")]
         public void Should_Pass_When_Passing_Valid_Params()
         {
-            //var riskyCustomer = new SettledBetsRiskAnalyze();
-            //var response = riskyCustomer.IsHighlyUnusualBetCustomer(new List<SettledBet>() { new SettledBet() { CustomerId = 1, WinAmount = 10 } }, 60);
-
             //Arrange
             var bets = _fixture.Create<List<SettledBet>>();
             var riskyCustomer = new SettledBetsRiskAnalyze();
+
             //Act
             var response = riskyCustomer.IsHighlyUnusualBetCustomer(bets, (int)bets.Average(q=>q.Stake)*35);
 
