@@ -36,6 +36,11 @@ namespace RiskyBets.MicroService.BLL
             return stake > (avgAmt * _riskFactors.HighlyUnusualBetTimes);
         }
 
+        public bool IsWinOver1K(UnSettledBet customerBet)
+        {
+            return customerBet.ToWinAmount>1000; //TODO: Should be coming from RiskFactor
+        }
+
 
         public bool IsUnusualBetCustomer(IList<UnSettledBet> customerBets, int stake)
         {

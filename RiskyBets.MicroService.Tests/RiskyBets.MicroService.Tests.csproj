@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="BLL\UnsettledBetsRiskAnalyzeUnitTest.cs" />
     <Compile Include="BLL\SettledBetsRiskAnalyzeUnitTest.cs" />
+    <Compile Include="Controller\UnsettledBetQueryControllerTests.cs" />
     <Compile Include="Controller\SettledBetQueryControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

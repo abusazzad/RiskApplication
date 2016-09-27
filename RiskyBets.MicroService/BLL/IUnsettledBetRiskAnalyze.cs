@@ -10,5 +10,6 @@ namespace RiskyBets.MicroService.BLL
     {
         bool IsUnusualBetCustomer(IList<T> customerBets, int stake);
         bool IsHighlyUnusualBetCustomer(IList<T> customerBets, int stake);
+        bool IsWinOver1K(T customerBet);
     }
 }
